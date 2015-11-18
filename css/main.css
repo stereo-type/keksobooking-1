@@ -469,3 +469,85 @@ body {
   right: 9px;
   text-decoration: none;
 }
+
+footer {
+  border-top: solid 1px rgba(0, 0, 0, 0.2);
+  margin-top: 50px;
+  padding: 18px 0;
+}
+
+footer .center-wrapper {
+  position: relative;
+}
+
+.footer-logo {
+  color: #363636;
+  font-size: 12px;
+  margin-right: 200px;
+  position: relative;
+  padding-top: 35px;
+}
+
+.footer-logo a {
+  color: #363636;
+}
+
+.footer-logo a:hover {
+  color: #999;
+}
+
+.footer-logo-image {
+  left:0;
+  position: absolute;
+  top: -5px;
+}
+
+.footer-social {
+  position: absolute;
+  right: 0;
+  text-align: right;
+  top: 0;
+  width: 200px;
+}
+
+.footer-social-item {
+  background: url('../img/social-sprite.gif') no-repeat;
+  display: inline-block;
+  font-size: 0;
+  height: 26px;
+  list-style: none;
+  margin-left: 10px;
+  overflow: hidden;
+  text-indent: -1999em;
+  vertical-align: top;
+  width: 26px;
+}
+
+.footer-social-item-twitter {}
+.footer-social-item-twitter:hover {
+  background-position: 0 -26px;
+}
+
+.footer-social-item-instagram {
+  background-position: -26px 0;
+}
+
+.footer-social-item-instagram:hover {
+  background-position: -26px -26px;
+}
+
+.footer-social-item-facebook {
+  background-position: -52px 0;
+}
+
+.footer-social-item-facebook:hover {
+  background-position: -52px -26px;
+}
+
+.footer-social-item-vk {
+  background-position: -78px 0;
+}
+
+.footer-social-item-vk:hover {
+  background-position: -78px -26px;
+}
