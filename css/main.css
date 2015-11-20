@@ -67,7 +67,8 @@ body {
 /* Big welcome block. */
 .welcome {
   background: #5d93a0 url('../img/welcome-overlay.jpg') no-repeat;
-  background-size: auto 100%;
+  background-size: cover;
+  background-position: center;
   padding: 56px 0 75px;
 }
 
@@ -173,6 +174,7 @@ body {
   padding: 0 12px;
   vertical-align: middle;
   white-space: nowrap;
+  cursor: pointer;
 }
 
 /* Map preview */
