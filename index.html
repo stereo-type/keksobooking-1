@@ -65,89 +65,7 @@
   </form>
 
   <div class="hotels-list">
-    <article class="hotel" style="background: url('img/hotel-1.jpg')">
-      <span class="hotel-stars hotel-stars-four"></span>
-      <h3 class="hotel-name">Radisson Blu Alcron Hotel</h3>
-      <div class="hotel-distance"><span class="hotel-distance-kilometers">500м</span> до центра</div>
-      <span class="hotel-rating hotel-rating-eight">8,9</span>
-      <span class="hotel-favourite"></span>
-      <ul class="hotel-amenities">
-        <li class="hotel-amenity hotel-amenity-wifi">Wi-Fi</li>
-        <li class="hotel-amenity hotel-amenity-breakfast">Завтрак</li>
-        <li class="hotel-amenity hotel-amenity-parking">Парковка</li>
-      </ul>
-      <a href="#" class="hotel-price">2 130&thinsp;200&nbsp;<span class="rouble">руб.</span></a>
-    </article>
 
-    <article class="hotel" style="background: url('img/hotel-2.jpg')">
-      <span class="hotel-stars hotel-stars-three"></span>
-      <h3 class="hotel-name">Radisson Blu Alcron Hotel</h3>
-      <div class="hotel-distance"><span class="hotel-distance-kilometers">500м</span> до центра</div>
-      <span class="hotel-rating hotel-rating-four">4,2</span>
-      <span class="hotel-favourite"></span>
-      <ul class="hotel-amenities">
-        <li class="hotel-amenity hotel-amenity-wifi">Wi-Fi</li>
-        <li class="hotel-amenity hotel-amenity-breakfast">Завтрак</li>
-        <li class="hotel-amenity hotel-amenity-parking">Парковка</li>
-      </ul>
-      <a href="#" class="hotel-price">9700&nbsp;<span class="rouble">руб.</span></a>
-    </article>
-
-    <article class="hotel">
-      <span class="hotel-stars hotel-stars-five"></span>
-      <h3 class="hotel-name">Radisson Blu Alcron Hotel</h3>
-      <div class="hotel-distance"><span class="hotel-distance-kilometers">500м</span> до центра</div>
-      <span class="hotel-rating hotel-rating-nine">9,0</span>
-      <span class="hotel-favourite hotel-favourite-liked"></span>
-      <ul class="hotel-amenities">
-        <li class="hotel-amenity hotel-amenity-wifi">Wi-Fi</li>
-        <li class="hotel-amenity hotel-amenity-breakfast">Завтрак</li>
-        <li class="hotel-amenity hotel-amenity-parking">Парковка</li>
-      </ul>
-      <a href="#" class="hotel-price">102&thinsp;000&nbsp;<span class="rouble">руб.</span></a>
-    </article>
-
-    <article class="hotel hotel-nophoto">
-      <span class="hotel-stars hotel-stars-two"></span>
-      <h3 class="hotel-name">Radisson Blu Alcron Hotel</h3>
-      <div class="hotel-distance"><span class="hotel-distance-kilometers">500м</span> до центра</div>
-      <span class="hotel-rating hotel-rating-five">5,3</span>
-      <span class="hotel-favourite hotel-favourite-liked"></span>
-      <ul class="hotel-amenities">
-        <li class="hotel-amenity hotel-amenity-wifi">Wi-Fi</li>
-        <li class="hotel-amenity hotel-amenity-breakfast">Завтрак</li>
-        <li class="hotel-amenity hotel-amenity-parking">Парковка</li>
-      </ul>
-      <a href="#" class="hotel-price">10&thinsp;200&nbsp;<span class="rouble">руб.</span></a>
-    </article>
-
-    <article class="hotel">
-      <span class="hotel-stars"></span>
-      <h3 class="hotel-name">Radisson Blu Alcron Hotel</h3>
-      <div class="hotel-distance"><span class="hotel-distance-kilometers">500м</span> до центра</div>
-      <span class="hotel-rating hotel-rating-seven">7,1</span>
-      <span class="hotel-favourite"></span>
-      <ul class="hotel-amenities">
-        <li class="hotel-amenity hotel-amenity-wifi" title="Wi-Fi">Wi-Fi</li>
-        <li class="hotel-amenity hotel-amenity-breakfast" title="Завтрак">Завтрак</li>
-        <li class="hotel-amenity hotel-amenity-parking" title="Парковка">Парковка</li>
-      </ul>
-      <a href="#" class="hotel-price">8400&nbsp;<span class="rouble">руб.</span></a>
-    </article>
-
-    <article class="hotel hotel-nophoto">
-      <span class="hotel-stars"></span>
-      <h3 class="hotel-name">Radisson Blu Alcron Hotel</h3>
-      <div class="hotel-distance"><span class="hotel-distance-kilometers">500м</span> до центра</div>
-      <span class="hotel-rating hotel-rating-none">Оценки нет</span>
-      <span class="hotel-favourite"></span>
-      <ul class="hotel-amenities">
-        <li class="hotel-amenity hotel-amenity-wifi" title="Wi-Fi">Wi-Fi</li>
-        <li class="hotel-amenity hotel-amenity-breakfast" title="Завтрак">Завтрак</li>
-        <li class="hotel-amenity hotel-amenity-parking" title="Парковка">Парковка</li>
-      </ul>
-      <a href="#" class="hotel-price">8400&nbsp;<span class="rouble">руб.</span></a>
-    </article>
   </div>
 </main>
 
@@ -167,7 +85,7 @@
 
 <div class="overlays"></div>
 
-<template id="hotel-template">
+<template id="hotel-template" style="display: none">
   <article class="hotel">
     <span class="hotel-stars"></span>
     <h3 class="hotel-name"></h3>
@@ -185,6 +103,8 @@
 
 <script src="lib/cookies.js"></script>
 <script src="js/form-validation.js"></script>
+<script src="data/hotels.js"></script>
+<script src="js/hotels-list.js"></script>
 
 </body>
 </html>
