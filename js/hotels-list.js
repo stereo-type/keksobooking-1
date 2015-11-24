@@ -1,5 +1,3 @@
-/* global hotels: true */
-
 'use strict';
 
 (function() {
@@ -55,9 +53,11 @@
 
   var container = document.querySelector('.hotels-list');
 
-  hotels.forEach(function(hotel) {
-    var element = getElementFromTemplate(hotel);
-    container.appendChild(element);
+  downloadHotels(function(hotels) {
+    hotels.forEach(function(hotel) {
+      var element = getElementFromTemplate(hotel);
+      container.appendChild(element);
+    });
   });
 
   /**
@@ -135,5 +135,17 @@
     backgroundImage.src = '/' + data.preview;
 
     return element;
+  }
+
+  function downloadHotels(callback) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'data/hotels.json');
+
+    xhr.onload = function(evt) {
+      console.log(arguments);
+      callback(JSON.parse(evt.srcElement.response));
+    };
+
+    xhr.send();
   }
 })();
