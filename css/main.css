@@ -1,3 +1,10 @@
+@font-face {
+  font-family: "ALS Rubl";
+  src: url(../fonts/rouble.otf) format("opentype");
+  font-style: normal;
+  font-weight: normal;
+}
+
 html, body {
   margin: 0;
   padding: 0;
@@ -27,7 +34,7 @@ body {
   line-height: 1.2;
   overflow: hidden;
   text-indent: -2em;
-  vertical-align: middle;
+  vertical-align: text-bottom;
 }
 
 .rouble::after {
