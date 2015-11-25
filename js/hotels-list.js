@@ -101,7 +101,11 @@
 
     // Алгоритм
     // Подсветить выбранный фильтр
-    document.querySelector('#' + activeFilter).classList.remove('hotel-filter-selected');
+    var selectedElement = document.querySelector('#' + activeFilter);
+    if (selectedElement) {
+      selectedElement.classList.remove('hotel-filter-selected');
+    }
+
     document.querySelector('#' + id).classList.add('hotel-filter-selected');
 
     // Отсортировать и отфильтровать отели по выбранному параметру и вывести на страницу
