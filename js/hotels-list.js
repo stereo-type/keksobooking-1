@@ -8,6 +8,7 @@
    */
   var starsClassName = [
     'hotel-stars',
+    'hotel-stars',
     'hotel-stars-two',
     'hotel-stars-three',
     'hotel-stars-four',
@@ -52,13 +53,124 @@
   };
 
   var container = document.querySelector('.hotels-list');
+  var activeFilter = null;
+  var hotels = [];
 
-  downloadHotels(function(hotels) {
-    hotels.forEach(function(hotel) {
+  var filters = document.querySelectorAll('.hotel-filter');
+  for (var i = 0; i < filters.length; i++) {
+    filters[i].onclick = function(evt) {
+      var clickedElementID = evt.target.id;
+      setActiveFilter(clickedElementID);
+    };
+  }
+
+  getHotels();
+
+  /**
+   * Отрисовка списка отелей.
+   * @param {Array.<Object>} hotels
+   */
+  function renderHotels(hotelsToRender) {
+    container.innerHTML = '';
+    var fragment = document.createDocumentFragment();
+
+    hotelsToRender.forEach(function(hotel) {
       var element = getElementFromTemplate(hotel);
-      container.appendChild(element);
+
+      // Для каждого из 50 элементов вызывается отрисовка в DOM.
+      // Потенциально, это замедляет производительность в старых браузерах,
+      // потому что пересчет параметров страницы будет производиться после
+      // каждой вставки элемента на страницу. Чтобы этого избежать, пользуются
+      // фрагментами, нодами вида DocumentFragment, которые представляют
+      // собой контейнеры для других элементов.
+      fragment.appendChild(element);
     });
-  });
+
+    container.appendChild(fragment);
+  }
+
+  /**
+   * Установка выбранного фильтра
+   * @param {string} id
+   */
+  function setActiveFilter(id) {
+    // Предотвращение повторной установки одного и того же фильтра.
+    if (activeFilter === id) {
+      return;
+    }
+
+    // Алгоритм
+    // Подсветить выбранный фильтр
+    document.querySelector('#' + activeFilter).classList.remove('hotel-filter-selected');
+    document.querySelector('#' + id).classList.add('hotel-filter-selected');
+
+    // Отсортировать и отфильтровать отели по выбранному параметру и вывести на страницу
+    // hotels будет хранить _изначальный_ список отелей, чтобы можно было отменить
+    // фильтр и вернуться к изначальному состоянию списка. Array.sort изменяет
+    // исходный массив, поэтому сортировку и фильтрацию будем производить на копии.
+    var filteredHotels = hotels.slice(0); // Копирование массива
+
+    switch (id) {
+      case 'filter-expensive':
+        // Для показа сначала дорогих отелей, список нужно отсортировать
+        // по убыванию цены.
+        filteredHotels = filteredHotels.sort(function(a, b) {
+          return b.price - a.price;
+        });
+        break;
+
+      case 'filter-cheap':
+        filteredHotels = filteredHotels.sort(function(a, b) {
+          return a.price - b.price;
+        });
+        break;
+
+      case 'filter-2stars':
+        // Формирование списка отелей минимум с двумя звездами производится
+        // в два этапа: отсеивание отелей меньше чем с двумя звездами
+        // и сортировка по возрастанию количества звезд.
+        filteredHotels = filteredHotels.sort(function(a, b) {
+          return a.stars - b.stars;
+        }).filter(function(item) {
+          return item.stars > 2;
+        });
+
+        break;
+
+      case 'filter-6rating':
+        filteredHotels = filteredHotels.sort(function(a, b) {
+          return a.rating - b.rating;
+        }).filter(function(item) {
+          return item.rating >= 6;
+        });
+        break;
+    }
+
+    renderHotels(filteredHotels);
+
+    activeFilter = id;
+  }
+
+  /**
+   * Загрузка списка отелей
+   */
+  function getHotels() {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'data/hotels.json');
+    xhr.onload = function(evt) {
+      var rawData = evt.target.response;
+      var loadedHotels = JSON.parse(rawData);
+      hotels = loadedHotels;
+
+      // Обработка загруженных данных (например отрисовка)
+      // NB! Важный момент не освещенный в лекции — после загрузки отрисовка
+      // дожна производиться не вызовом renderHotels а setActiveFilter,
+      // потому что теперь механизм отрисовки работает через фильтрацию.
+      setActiveFilter('filter-all');
+    };
+
+    xhr.send();
+  }
 
   /**
    * @param {Object} data
@@ -135,17 +247,5 @@
     backgroundImage.src = '/' + data.preview;
 
     return element;
-  }
-
-  function downloadHotels(callback) {
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'data/hotels.json');
-
-    xhr.onload = function(evt) {
-      console.log(arguments);
-      callback(JSON.parse(evt.srcElement.response));
-    };
-
-    xhr.send();
   }
 })();

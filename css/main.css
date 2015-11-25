@@ -240,6 +240,11 @@ body {
   padding: 0 10px;
 }
 
+.hotel-filter-selected {
+  border-color: #666;
+  cursor: default;
+}
+
 .hotel-filter-reset {
   font-size: 14px;
   cursor: pointer;
