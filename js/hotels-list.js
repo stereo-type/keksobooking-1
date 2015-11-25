@@ -53,7 +53,7 @@
   };
 
   var container = document.querySelector('.hotels-list');
-  var activeFilter = null;
+  var activeFilter = 'filter-all';
   var hotels = [];
 
   var filters = document.querySelectorAll('.hotel-filter');
@@ -92,10 +92,12 @@
   /**
    * Установка выбранного фильтра
    * @param {string} id
+   * @param {boolean=} force Флаг, при котором игнорируется проверка
+   *     на повторное присвоение фильтра.
    */
-  function setActiveFilter(id) {
+  function setActiveFilter(id, force) {
     // Предотвращение повторной установки одного и того же фильтра.
-    if (activeFilter === id) {
+    if (activeFilter === id && !force) {
       return;
     }
 
@@ -164,16 +166,26 @@
     xhr.onload = function(evt) {
       var rawData = evt.target.response;
       var loadedHotels = JSON.parse(rawData);
-      hotels = loadedHotels;
-
-      // Обработка загруженных данных (например отрисовка)
-      // NB! Важный момент не освещенный в лекции — после загрузки отрисовка
-      // дожна производиться не вызовом renderHotels а setActiveFilter,
-      // потому что теперь механизм отрисовки работает через фильтрацию.
-      setActiveFilter('filter-all');
+      updateLoadedHotels(loadedHotels);
     };
 
     xhr.send();
+  }
+
+  /**
+   * Сохранение списка отелей в переменную hotels, обновление счетчика отелей
+   * и вызов фильтрации и отрисовки.
+   * @param {Array.<Object>} loadedHotels
+   */
+  function updateLoadedHotels(loadedHotels) {
+    hotels = loadedHotels;
+    document.querySelector('.hotels-title-count-number').innerText = hotels.length;
+
+    // Обработка загруженных данных (например отрисовка)
+    // NB! Важный момент не освещенный в лекции — после загрузки отрисовка
+    // дожна производиться не вызовом renderHotels а setActiveFilter,
+    // потому что теперь механизм отрисовки работает через фильтрацию.
+    setActiveFilter(activeFilter, true);
   }
 
   /**
