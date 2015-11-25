@@ -182,7 +182,7 @@
    */
   function getElementFromTemplate(data) {
     var template = document.querySelector('#hotel-template');
-    var hotelRating = data.rating || '6.0';
+    var hotelRating = data.rating || 6.0;
     var element;
 
     // Свойство content у шаблона не работает в IE,
@@ -202,7 +202,7 @@
     element.querySelector('.hotel-rating').classList.add(ratingClassName[Math.floor(hotelRating)]);
 
     element.querySelector('.hotel-name').textContent = data.name;
-    element.querySelector('.hotel-rating').textContent = hotelRating;
+    element.querySelector('.hotel-rating').textContent = hotelRating.toFixed(1);
     element.querySelector('.hotel-price-value').textContent = data.price;
 
     var amenitiesContainer = element.querySelector('.hotel-amenities');
