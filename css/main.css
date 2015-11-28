@@ -33,13 +33,19 @@ body {
   display: inline-block;
   line-height: 1.2;
   overflow: hidden;
+  position: relative;
   text-indent: -2em;
-  vertical-align: text-bottom;
+  top: -1px;
+  vertical-align: middle;
 }
 
 .rouble::after {
   content: 'a';
   font-family: "ALS Rubl";
+}
+
+.hidden {
+  display: none;
 }
 
 /* Header */
@@ -481,6 +487,64 @@ body {
   position: absolute;
   right: 9px;
   text-decoration: none;
+}
+
+.gallery-overlay {
+  background: rgba(0, 0, 0, 0.8);
+  bottom: 0;
+  left: 0;
+  overflow: auto;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 1;
+}
+
+.gallery-overlay-close {
+  color: #fff;
+  cursor: pointer;
+  font-size: 40px;
+  position: absolute;
+  right: 1ex;
+  text-align: center;
+  top: 0.5ex;
+}
+
+.gallery-overlay-preview {
+  margin-top: 60px;
+  max-height: 600px;
+  min-height: 300px;
+  text-align: center;
+  vertical-align: middle;
+  width: 100%;
+}
+
+.gallery-overlay-controls {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.gallery-overlay-control {
+  background: url('../img/control-sprite.png') no-repeat;
+  cursor: pointer;
+  display: inline-block;
+  height: 40px;
+  margin-top: 30px;
+  opacity: 0.3;
+  vertical-align: middle;
+  width: 40px;
+}
+
+.gallery-overlay-control:hover {
+  opacity: 1;
+}
+
+.gallery-overlay-control:active {
+  transform: translate(0, 1px);
+}
+
+.gallery-overlay-control-right {
+  background-position: -40px 0;
 }
 
 footer {
