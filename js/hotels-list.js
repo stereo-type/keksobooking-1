@@ -303,7 +303,7 @@
     }, IMAGE_TIMEOUT);
 
     // Изменение src у изображения начинает загрузку.
-    backgroundImage.src = '/' + data.preview;
+    backgroundImage.src = data.preview;
 
     return element;
   }
