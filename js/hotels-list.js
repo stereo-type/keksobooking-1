@@ -54,8 +54,8 @@
 
   var container = document.querySelector('.hotels-list');
   var activeFilter = 'filter-all';
-  var hotels = []; // hotels не подходит — это изначальный список
-  var filteredHotels = []; // поэтому сохраним отфильтрованный список глобально
+  var hotels = [];
+  var filteredHotels = [];
   var currentPage = 0;
   var PAGE_SIZE = 9;
 
@@ -65,6 +65,11 @@
   // обработчик сразу на все фильтры? Можно через делегирование.
   // Делегирование — прием основанный на всплытии событий.
   var filters = document.querySelector('.hotels-filters');
+
+  // При делегировании обработчик события добавленный на один элемент
+  // слушает события призошедшие на одном из дочерних элементов
+  // этого элемента. На каком элементов произошло событие можно
+  // проверить, обратившись к свойству target объекта Event.
   filters.addEventListener('click', function(evt) {
     var clickedElement = evt.target;
     if (clickedElement.classList.contains('hotel-filter')) {
