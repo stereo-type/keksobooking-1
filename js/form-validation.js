@@ -13,7 +13,7 @@
   var rooms = formElement['searchform-guests-rooms'];
   var dateFrom = formElement['date-from'];
   var dateTo = formElement['date-to'];
-
+  
   // Минимальное количество гостей — 1, максимальное — 6
   guests.min = 1;
   guests.max = 6;
